@@ -67,29 +67,25 @@ class Stocks():
 
 			soup = BeautifulSoup(page, "lxml")
 
-			try:
-				JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
+			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
-				JumbledInfo = JumbledInfo[JumbledInfo.index("{"):][::-1]
+			JumbledInfo = JumbledInfo[JumbledInfo.index("{"):][::-1]
 
-				JumbledInfo = JumbledInfo[JumbledInfo.index("}"):][::-1]
+			JumbledInfo = JumbledInfo[JumbledInfo.index("}"):][::-1]
 
-				InfoDict = json.loads (JumbledInfo)
+			InfoDict = json.loads (JumbledInfo)
 
-				MainInfoDict = InfoDict["data"][0]
+			MainInfoDict = InfoDict["data"][0]
 
-				self.lastPrice = MainInfoDict["lastPrice"]
-				self.pChange = MainInfoDict["pChange"]
-				self.change = MainInfoDict["change"]
-				self.companyName = MainInfoDict["companyName"]
+			self.lastPrice = MainInfoDict["lastPrice"]
+			self.pChange = MainInfoDict["pChange"]
+			self.change = MainInfoDict["change"]
+			self.companyName = MainInfoDict["companyName"]
 
-				self.lastUpdateTime = InfoDict["lastUpdateTime"]
+			self.lastUpdateTime = InfoDict["lastUpdateTime"]
 
 
-				return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
-
-			except Exception as e:
-				pass
+			return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
 
 class bcolors:
 	LBLUE = '\033[96m'
