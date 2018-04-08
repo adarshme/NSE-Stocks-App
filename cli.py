@@ -32,7 +32,7 @@ for i in range (1, len(sys.argv)):
 		companyName = StockApp.companyName
 
 	except AttributeError:
-		print ("Could not find", sys.argv[i])
+		pass
 
 	End = bcolors.ENDC
 
