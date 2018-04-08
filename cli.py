@@ -16,9 +16,13 @@ bcolors = Stocks.bcolors()
 thresh = 2.5
 
 for i in range (1, len(sys.argv)):
-	Data = StockApp.ExtractStockPrice(sys.argv[i])
-
-	RequestComplete = False
+	try:
+		Data = StockApp.ExtractStockPrice(sys.argv[i])
+		RequestComplete = True
+	except Exception as e:
+		print ("Can't get", sys.argv[i])
+		print ()
+		RequestComplete = False
 
 	try:
 		lastPrice = StockApp.lastPrice
@@ -27,10 +31,8 @@ for i in range (1, len(sys.argv)):
 		lastUpdateTime = StockApp.lastUpdateTime
 		companyName = StockApp.companyName
 
-		RequestComplete = True
-
 	except AttributeError:
-		print ("Could not find", sys.argv[1])
+		print ("Could not find", sys.argv[i])
 
 	End = bcolors.ENDC
 
