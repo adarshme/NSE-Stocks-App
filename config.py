@@ -46,8 +46,4 @@ class Config():
 
 Config = Config()
 
-Config.RemoveStockSymbol("Infy")
-Config.RemoveStockSymbol("reliance")
-Config.RemoveStockSymbol("bse")
-Config.RemoveStockSymbol("techdf")
-Config.RemoveStockSymbol("techM")
+Config.AddStockSymbol("Infy")
