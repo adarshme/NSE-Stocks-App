@@ -5,9 +5,15 @@ StockApp = Stocks.Stocks()
 
 class Config():
 	def __init__(self):
-		config = configparser.ConfigParser()
+		self.config = configparser.ConfigParser()
 
-		File = config.read('config.ini')
+		self.LoadConfigFile()
+
+		if self.File == []:
+			self.config["Stocks"] = {}
+			self.WriteFile()
+
+			self.LoadConfigFile()
 
 	def AddStockSymbol(self, StockSymbol):
 		try:
@@ -16,11 +22,32 @@ class Config():
 			Data = None
 
 		if Data:
-			print (True)
+			self.config["Stocks"][StockSymbol] = StockApp.companyName
+
+			self.WriteFile()
 
 		else:
-			print (False)
+			print ("Couln't find", StockSymbol)
+
+	def RemoveStockSymbol(self, StockSymbol):
+		self.config.remove_option("Stocks", StockSymbol)
+
+		self.WriteFile()
+
+	def WriteFile(self):
+		with open('config.ini', 'w') as configfile:
+			self.config.write (configfile)
+
+		self.LoadConfigFile()
+
+	def LoadConfigFile(self):
+		self.File = self.config.read('config.ini')
+
 
 Config = Config()
 
-Config.AddStockSymbol("INFY")
+Config.RemoveStockSymbol("Infy")
+Config.RemoveStockSymbol("reliance")
+Config.RemoveStockSymbol("bse")
+Config.RemoveStockSymbol("techdf")
+Config.RemoveStockSymbol("techM")
