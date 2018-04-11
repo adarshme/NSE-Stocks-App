@@ -5,7 +5,7 @@ You need Python 3 installed. Instructions to add your stocks and run the program
 
 Note:- __This is still in development. Stay tuned for more features!__
 
-***__Required modules__*** (Not in stdlib)-
+***Required modules*** (Not in stdlib)-
   ***Beautiful Soup 4***
   
 Optional modules -
@@ -42,3 +42,5 @@ Optional modules -
 
  if you are in a system which has python2 by default, type:-
    `python3 cli.py COMMAND`
+
+*New CLI Features! Check them out! April 11 2018*
