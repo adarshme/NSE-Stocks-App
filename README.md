@@ -1,7 +1,7 @@
 # NSE-Stocks-App
 Quickly get information about your stocks through a *CLI* or *GUI*.
 
-You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App/tree/config-file#instructions-).
+You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
 
 Note:- __This is still in development. Stay tuned for more features!__
 
@@ -35,7 +35,7 @@ Optional modules -
      Use `status` to see your list of stocks
 
  Wherever *STOCKSYMBOLS* have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces.
- If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/config-file/Stocks.py)
+ If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/master/Stocks.py)
 
  To call a command, type:-
    `python cli.py COMMAND`
