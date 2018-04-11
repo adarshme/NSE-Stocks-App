@@ -1,15 +1,15 @@
 # NSE-Stocks-App
 Quickly get information about your stocks through a *CLI* or *GUI*.
 
-You need Python 3 installed. Instructions to add your stocks and run the program are given below.
+You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App/tree/config-file#instructions-).
 
-Note:- This is still in development. Stay tuned for more features!
+Note:- __This is still in development. Stay tuned for more features!__
 
-Required modules (Not in stdlib)-
+***__Required modules__*** (Not in stdlib)-
   ***Beautiful Soup 4***
   
 Optional modules -
-  **PyQT5** (For GUI)
+  *PyQT5* (For GUI)
 
 ## Instructions:-
  List of commands available: -
