@@ -1,8 +1,4 @@
-# Type "python cli-search.py STOCKSYMBOLS" in the terminal.
-# Example - "python cli-search.py reliance infy"
 # Leave a space between each Stock Symbol
-# If you're in a system where python2 is default-
-# Change "python" to "python3"
 
 import Stocks
 import sys
