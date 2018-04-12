@@ -1,8 +1,10 @@
 # Leave a space between each Stock Symbol
-
+#import time
+#st = time.time()
 import Stocks
 import sys
 import config
+import multiprocessing
 
 StartEndString = "------------------------------------"
 
@@ -79,9 +81,91 @@ def SimpleGet(StocksList = sys.argv):
 			print ("Last Updated Time:", lastUpdateTime)
 			print ()
 
+def MultiStockPrice(Stock):
+	try:
+		Data = StockApp.ExtractStockPrice(Stock)
+		RequestComplete = True
+	except Exception as e:
+		print ("Can't get", Stock)
+		print ()
+		RequestComplete = False
+
+	try:
+		lastPrice = StockApp.lastPrice
+		pChange = StockApp.pChange
+		change = StockApp.change
+		lastUpdateTime = StockApp.lastUpdateTime
+		companyName = StockApp.companyName
+
+	except AttributeError:
+		print ("AttributeError")
+
+	End = bcolors.ENDC
+
+	if RequestComplete:
+		if float(pChange) > thresh:
+			Start = bcolors.OKGREEN + bcolors.BOLD
+
+		elif float(pChange) < -thresh:
+			Start = bcolors.FAIL
+
+		elif float(pChange) < 0 and float(pChange) > -thresh:
+			Start = bcolors.HEADER
+
+		elif float(pChange) > 0 and float(pChange) < thresh:
+			Start = bcolors.WARNING
+
+		else:
+			Start = ""
+
+	'''
+	print (StartEndString)
+	print ()
+	print (Start, "Stock:", companyName, End)
+	print (Start, "Last Price:", lastPrice, End)
+	print (Start, "Percentage Change:", pChange, End)
+	print (Start, "Absolute Change:", change, End)
+	print (Start, "Last Updated Time:", lastUpdateTime, End)
+	print ()
+	print (StartEndString)'''
+
+	if RequestComplete:
+		print (StartEndString)
+		print ("Stock:", Start, companyName, End)
+		print ("Last Price:", bcolors.BOLD, lastPrice, End)
+		print ("Percentage Change:", Start, pChange, End)
+		print ("Absolute Change:", Start, change, End)
+		print ("Last Updated Time:", lastUpdateTime)
+		print ()
+
+	return True
+
+def MultiGet(StocksList = sys.argv):
+	if StocksList == sys.argv:
+		start = 2
+		end = len(sys.argv)
+
+	else:
+		start = 0
+		end = len(StocksList)
+
+	Processes = []
+
+	for i in range (start, end):
+		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i],)))
+
+	for i in Processes:
+		i.start()
+
+	i.join()
+
 if sys.argv[1] == "get":
-	if sys.argv[2] == "all":
+	if sys.argv[2] == "all-m":
+		MultiGet(Config.GetAllStockSymbols())
+
+	elif sys.argv[2] == "all":
 		SimpleGet(Config.GetAllStockSymbols())
+
 	else:
 		SimpleGet()
 
@@ -133,3 +217,5 @@ elif sys.argv[1] == "help":
 	print (message)
 
 print (StartEndString)
+
+#print (time.time() - st)
