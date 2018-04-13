@@ -157,7 +157,9 @@ def MultiGet(StocksList = sys.argv):
 	for i in Processes:
 		i.start()
 
-	i.join()
+	for i in Processes:
+		while i.is_alive():
+			pass
 
 if sys.argv[1] == "get":
 	if sys.argv[2] == "all-m":
