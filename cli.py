@@ -81,7 +81,7 @@ def SimpleGet(StocksList = sys.argv):
 			print ("Last Updated Time:", lastUpdateTime)
 			print ()
 
-def MultiStockPrice(Stock):
+def MultiStockPrice(Stock, lock):
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
@@ -129,6 +129,8 @@ def MultiStockPrice(Stock):
 	print ()
 	print (StartEndString)'''
 
+	lock.acquire()
+
 	if RequestComplete:
 		print (StartEndString)
 		print ("Stock:", Start, companyName, End)
@@ -137,10 +139,15 @@ def MultiStockPrice(Stock):
 		print ("Absolute Change:", Start, change, End)
 		print ("Last Updated Time:", lastUpdateTime)
 		print ()
+		lock.release()
+
+	else:
+		lock.release()
 
 	return True
 
 def MultiGet(StocksList = sys.argv):
+	lock = multiprocessing.Lock()
 	if StocksList == sys.argv:
 		start = 2
 		end = len(sys.argv)
@@ -152,7 +159,7 @@ def MultiGet(StocksList = sys.argv):
 	Processes = []
 
 	for i in range (start, end):
-		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i],)))
+		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i], lock, )))
 
 	for i in Processes:
 		i.start()
