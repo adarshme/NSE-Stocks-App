@@ -20,7 +20,8 @@ Optional modules -
    - status
 
    1) get all:-
-     Use `get all` to show all your stock values.
+     Use `get all` to show all your stock values sequentially but may be slower.
+     Use `get all-m` to get faster results, but stocks are shown randomly.
 
    2) get:-
      Use `get STOCKSYMBOLS` to get the values of particular stocks.
