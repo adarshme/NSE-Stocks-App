@@ -55,8 +55,3 @@ class Config():
 		StockSymbols = [i for i in self.config.options("Stocks")]
 
 		return StockSymbols
-
-
-#Config = Config()
-
-#Config.AddStockSymbol("infy")

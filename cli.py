@@ -1,6 +1,5 @@
 # Leave a space between each Stock Symbol
-#import time
-#st = time.time()
+
 import Stocks
 import sys
 import config
@@ -226,5 +225,3 @@ elif sys.argv[1] == "help":
 	print (message)
 
 print (StartEndString)
-
-#print (time.time() - st)
