@@ -99,6 +99,18 @@ class bcolors:
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
 
+class nocolors:
+	LBLUE = ''
+	HEADER = ''
+	OKBLUE = ''
+	OKGREEN = ''
+	WARNING = ''
+	FAIL = ''
+	DWARNING = ''
+	ENDC = ''
+	BOLD = ''
+	UNDERLINE = ''
+
 if __name__ == '__main__':
 	StartEndString = "------------------------------------"
 	TableHeading = "StckSymb     StckPrice  %Chng  Abs.Chng        LstUpTime"

@@ -8,7 +8,10 @@ import multiprocessing
 StartEndString = "------------------------------------"
 
 StockApp = Stocks.Stocks()
-bcolors = Stocks.bcolors()
+if sys.platform in "win32 cygwin":
+	bcolors = Stocks.nocolours()
+else:
+	bcolors = Stocks.bcolors()
 Config = config.Config()
 
 # Change this value to control the coloring in the terminal.
