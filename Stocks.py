@@ -65,7 +65,7 @@ class Stocks():
 
 			page = urlopen(req)
 
-			soup = BeautifulSoup(page, "lxml")
+			soup = BeautifulSoup(page, "html.parser")
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
