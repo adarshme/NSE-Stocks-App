@@ -9,7 +9,7 @@ StartEndString = "------------------------------------"
 
 StockApp = Stocks.Stocks()
 if sys.platform in "win32 cygwin":
-	bcolors = Stocks.nocolours()
+	bcolors = Stocks.nocolors()
 else:
 	bcolors = Stocks.bcolors()
 Config = config.Config()
