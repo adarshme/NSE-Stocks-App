@@ -65,7 +65,7 @@ class Stocks():
 
 			page = urlopen(req)
 
-			soup = BeautifulSoup(page, "lxml")
+			soup = BeautifulSoup(page, "html.parser")
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
@@ -98,6 +98,18 @@ class bcolors:
 	ENDC = '\033[0m'
 	BOLD = '\033[1m'
 	UNDERLINE = '\033[4m'
+
+class nocolors:
+	LBLUE = ''
+	HEADER = ''
+	OKBLUE = ''
+	OKGREEN = ''
+	WARNING = ''
+	FAIL = ''
+	DWARNING = ''
+	ENDC = ''
+	BOLD = ''
+	UNDERLINE = ''
 
 if __name__ == '__main__':
 	StartEndString = "------------------------------------"

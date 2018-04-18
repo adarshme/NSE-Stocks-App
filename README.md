@@ -1,9 +1,11 @@
 # NSE-Stocks-App
-Quickly get information about your stocks through a *CLI* or *GUI*.
+Cross Platform App to quickly get information about your stocks through a *CLI* or *GUI*.
+
+> The *National Stock Exchange of India Limited* (NSE) is the leading stock exchange of India, located in Mumbai . 
 
 You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
 
-Note:- __This is still in development. Stay tuned for more features!__
+Note:- **This is still in development. Stay tuned for more features!** Any suggestions are always welcome.
 
 ***Required modules*** (Not in stdlib)-
   ***Beautiful Soup 4***
@@ -44,4 +46,4 @@ Optional modules -
  if you are in a system which has python2 by default, type:-
    `python3 cli.py COMMAND`
 
-*New CLI Features! Check them out! April 11 2018*
+*Cross-Platform completely fixed! Check it out! April 18 2018*

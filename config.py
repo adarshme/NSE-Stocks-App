@@ -21,6 +21,10 @@ class Config():
 		except IndexError:
 			Data = None
 
+		if StockSymbol in self.GetAllStockSymbols():
+			print (StockSymbol, "has already been added")
+			Data = False
+
 		if Data:
 			self.config["Stocks"][StockSymbol] = StockApp.companyName
 
@@ -28,18 +32,21 @@ class Config():
 
 			print ("Added", StockApp.companyName)
 
-		else:
+		elif Data == None:
 			print ("Couln't find", StockSymbol)
 
 	def RemoveStockSymbol(self, StockSymbol):
 		if self.config.has_option("Stocks", StockSymbol):
 			self.config.remove_option("Stocks", StockSymbol)
+			RemoveSuccessful = True
 
 		else:
-			print (StockSymbol, "has not been added")
+			print (StockSymbol, "is not in your list")
+			RemoveSuccessful = False
 
 		self.WriteFile()
-		print ("Removed", StockSymbol)
+		if RemoveSuccessful:
+			print ("Removed", StockSymbol)
 		return True
 
 	def WriteFile(self):

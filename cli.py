@@ -8,7 +8,10 @@ import multiprocessing
 StartEndString = "------------------------------------"
 
 StockApp = Stocks.Stocks()
-bcolors = Stocks.bcolors()
+if sys.platform in "win32 cygwin":
+	bcolors = Stocks.nocolors()
+else:
+	bcolors = Stocks.bcolors()
 Config = config.Config()
 
 # Change this value to control the coloring in the terminal.
@@ -167,61 +170,62 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive():
 			pass
 
-if sys.argv[1] == "get":
-	if sys.argv[2] == "all-m":
-		MultiGet(Config.GetAllStockSymbols())
+if __name__ == '__main__':
+	if sys.argv[1] == "get":
+		if sys.argv[2] == "all-m":
+			MultiGet(Config.GetAllStockSymbols())
 
-	elif sys.argv[2] == "all":
-		SimpleGet(Config.GetAllStockSymbols())
+		elif sys.argv[2] == "all":
+			SimpleGet(Config.GetAllStockSymbols())
 
-	else:
-		SimpleGet()
+		else:
+			SimpleGet()
 
-elif sys.argv[1] == "add":
-	for i in range (2, len(sys.argv)):
-		Config.AddStockSymbol(sys.argv[i])
+	elif sys.argv[1] == "add":
+		for i in range (2, len(sys.argv)):
+			Config.AddStockSymbol(sys.argv[i])
 
-elif sys.argv[1] == "remove":
-	for i in range (2, len(sys.argv)):
-		Config.RemoveStockSymbol(sys.argv[i])
+	elif sys.argv[1] == "remove":
+		for i in range (2, len(sys.argv)):
+			Config.RemoveStockSymbol(sys.argv[i])
 
-elif sys.argv[1] == "status":
-	print ("Following stock symbols have been added:-")
-	for i in Config.GetAllStockSymbols():
-		print (" ", i)
+	elif sys.argv[1] == "status":
+		print ("Following stock symbols have been added:-")
+		for i in Config.GetAllStockSymbols():
+			print (" ", i)
 
-elif sys.argv[1] == "help":
-	message = '''
- List of commands available: -
-   1) get all
-   2) get
-   3) add
-   4) remove
-   5) status
+	elif sys.argv[1] == "help":
+		message = '''
+	 List of commands available: -
+	   1) get all
+	   2) get
+	   3) add
+	   4) remove
+	   5) status
 
-   1) get all:-
-     Use 'get all' to show all your stock values.
+	   1) get all:-
+	     Use 'get all' to show all your stock values.
 
-   2) get:-
-     Use 'get STOCKSYMBOLS' to get the values of particular stocks.
+	   2) get:-
+	     Use 'get STOCKSYMBOLS' to get the values of particular stocks.
 
-   3) add:-
-     Use 'add STOCKSYMBOLS' to add stocks to the list of all your stocks.
+	   3) add:-
+	     Use 'add STOCKSYMBOLS' to add stocks to the list of all your stocks.
 
-   4) remove:-
-     Use 'remove STOCKSYMBOLS' to remove stocks from your list of stocks.
+	   4) remove:-
+	     Use 'remove STOCKSYMBOLS' to remove stocks from your list of stocks.
 
-   5) status:-
-     Use 'status' to see your list of stocks
+	   5) status:-
+	     Use 'status' to see your list of stocks
 
- Wherever STOCKSYMBOLS have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces
+	 Wherever STOCKSYMBOLS have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces
 
- To call a command, type:-
-   python cli.py COMMAND
+	 To call a command, type:-
+	   python cli.py COMMAND
 
- if you are in a system which has python2 by default, type:-
-   python3 cli.py COMMAND'''
+	 if you are in a system which has python2 by default, type:-
+	   python3 cli.py COMMAND'''
 
-	print (message)
+		print (message)
 
-print (StartEndString)
+	print (StartEndString)
