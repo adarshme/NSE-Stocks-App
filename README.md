@@ -1,5 +1,5 @@
 # NSE-Stocks-App
-Cross Platform App to quickly get information about your stocks through a *CLI* or *GUI*.
+Cross Platform App to quickly get real-time information about your stocks through a *CLI* or *GUI*.
 
 > The *National Stock Exchange of India Limited* (NSE) is the leading stock exchange of India, located in Mumbai . 
 
