@@ -170,7 +170,7 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive():
 			pass
 
-if __name__ == '__main__':
+if __name__ == '__main__' and len(sys.argv) > 2:
 	if sys.argv[1] == "get":
 		if sys.argv[2] == "all-m":
 			MultiGet(Config.GetAllStockSymbols())
@@ -227,5 +227,9 @@ if __name__ == '__main__':
 	   python3 cli.py COMMAND'''
 
 		print (message)
+
+else:
+	print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
+	MultiGet(Config.GetAllStockSymbols())
 
 	print (StartEndString)
