@@ -170,7 +170,7 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive():
 			pass
 
-if __name__ == '__main__' and len(sys.argv) > 2:
+if __name__ == '__main__' and len(sys.argv) > 1:
 	if sys.argv[1] == "get":
 		if sys.argv[2] == "all-m":
 			MultiGet(Config.GetAllStockSymbols())
