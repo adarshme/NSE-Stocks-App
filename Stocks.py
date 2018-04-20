@@ -1,5 +1,7 @@
 # Run this program to get all your stocks info at once.
 
+import sys
+
 class Stocks():
 	def __init__(self):
 		self.LoadStocks ()
@@ -88,28 +90,29 @@ class Stocks():
 			return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
 
 class bcolors:
-	LBLUE = '\033[96m'
-	HEADER = '\033[95m'
-	OKBLUE = '\033[94m'
-	OKGREEN = '\033[92m'
-	WARNING = '\033[93m'
-	FAIL = '\033[91m'
-	DWARNING = '\033[90m'
-	ENDC = '\033[0m'
-	BOLD = '\033[1m'
-	UNDERLINE = '\033[4m'
+	if sys.platform in "win32 cygwin":
+		LBLUE = ''
+		HEADER = ''
+		OKBLUE = ''
+		OKGREEN = ''
+		WARNING = ''
+		FAIL = ''
+		DWARNING = ''
+		ENDC = ''
+		BOLD = ''
+		UNDERLINE = ''
 
-class nocolors:
-	LBLUE = ''
-	HEADER = ''
-	OKBLUE = ''
-	OKGREEN = ''
-	WARNING = ''
-	FAIL = ''
-	DWARNING = ''
-	ENDC = ''
-	BOLD = ''
-	UNDERLINE = ''
+	else:
+		LBLUE = '\033[96m'
+		HEADER = '\033[95m'
+		OKBLUE = '\033[94m'
+		OKGREEN = '\033[92m'
+		WARNING = '\033[93m'
+		FAIL = '\033[91m'
+		DWARNING = '\033[90m'
+		ENDC = '\033[0m'
+		BOLD = '\033[1m'
+		UNDERLINE = '\033[4m'
 
 if __name__ == '__main__':
 	StartEndString = "------------------------------------"

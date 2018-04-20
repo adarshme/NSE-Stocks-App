@@ -8,10 +8,7 @@ import multiprocessing
 StartEndString = "------------------------------------"
 
 StockApp = Stocks.Stocks()
-if sys.platform in "win32 cygwin":
-	bcolors = Stocks.nocolors()
-else:
-	bcolors = Stocks.bcolors()
+bcolors = Stocks.bcolors()
 Config = config.Config()
 
 # Change this value to control the coloring in the terminal.
@@ -170,7 +167,7 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive():
 			pass
 
-if __name__ == '__main__' and len(sys.argv) > 1:
+if __name__ == "__main__" and len(sys.argv) > 1:
 	if sys.argv[1] == "get":
 		if sys.argv[2] == "all-m":
 			MultiGet(Config.GetAllStockSymbols())
