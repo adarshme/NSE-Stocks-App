@@ -53,4 +53,4 @@ Optional modules -
    - If you already have python 3 installed, skip the first step.
    - Note that some OS's ship with python 2 and python 3 pre-installed. In that case replace pip with pip3.
 
-*Developed and tested extensively on Ubuntu 16.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. April 21 2018*
+*Developed and tested extensively on Ubuntu 16.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. April 21 2018.*
