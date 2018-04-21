@@ -1,6 +1,5 @@
 # Leave a space between each Stock Symbol
-import time
-st = time.time()
+
 import Stocks
 import sys
 import config
@@ -228,10 +227,11 @@ if __name__ == "__main__":
 
 			print (message)
 
+		else:
+			print (bcolors.OKBLUE + "I don't know that command!" + bcolors.ENDC)
+
 	else:
 		print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
 		MultiGet(Config.GetAllStockSymbols())
 
 	print (StartEndString)
-
-	print (time.time() - st)
