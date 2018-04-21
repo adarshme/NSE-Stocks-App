@@ -202,6 +202,7 @@ if __name__ == "__main__" and len(sys.argv) > 1:
 
 	   1) get all:-
 	     Use 'get all' to show all your stock values.
+	     Use `get all-m` to get faster results, but stocks are shown randomly.
 
 	   2) get:-
 	     Use 'get STOCKSYMBOLS' to get the values of particular stocks.
