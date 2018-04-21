@@ -46,4 +46,11 @@ Optional modules -
  if you are in a system which has python2 by default, type:-
    `python3 cli.py COMMAND`
 
+### How to install python and/or required modules:-
+   1. Download the latest version of python (3.x.x) from [here](https://www.python.org/downloads/) and install it.
+   2. In terminal/cmd/powershell type `pip install beautifulsoup4` to install BeautifulSoup4.
+   3. To install PyQt5, type `pip install pyqt5`.
+   - If you already have python 3 installed, skip the first step.
+   - Note that some OS's ship with python 2 and python 3 pre-installed. In that case replace pip with pip3.
+
 *Cross-Platform completely fixed! Check it out! April 18 2018*
