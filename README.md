@@ -21,20 +21,20 @@ Optional modules -
    - remove
    - status
 
-   1) get all:-
+   1. get all:-
      Use `get all` to show all your stock values sequentially but may be slower.
      Use `get all-m` to get faster results, but stocks are shown randomly.
 
-   2) get:-
+   2. get:-
      Use `get STOCKSYMBOLS` to get the values of particular stocks.
 
-   3) add:-
+   3. add:-
      Use `add STOCKSYMBOLS` to add stocks to the list of all your stocks.
 
-   4) remove:-
+   4. remove:-
      Use `remove STOCKSYMBOLS` to remove stocks from your list of stocks.
 
-   5) status:-
+   5. status:-
      Use `status` to see your list of stocks
 
  Wherever *STOCKSYMBOLS* have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces.
