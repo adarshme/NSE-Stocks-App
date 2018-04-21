@@ -91,16 +91,16 @@ class Stocks():
 
 class bcolors:
 	if sys.platform in "win32 cygwin":
-		LBLUE = ''
-		HEADER = ''
-		OKBLUE = ''
-		OKGREEN = ''
-		WARNING = ''
-		FAIL = ''
-		DWARNING = ''
-		ENDC = ''
-		BOLD = ''
-		UNDERLINE = ''
+		LBLUE = '<ESC>[96m'
+		HEADER = '<ESC>[95m'
+		OKBLUE = '<ESC>[94m'
+		OKGREEN = '<ESC>[92m'
+		WARNING = '<ESC>[93m'
+		FAIL = '<ESC>[91m'
+		DWARNING = '<ESC>[90m'
+		ENDC = '<ESC>[0m'
+		BOLD = '<ESC>[1m'
+		UNDERLINE = '<ESC>[4m'
 
 	else:
 		LBLUE = '\033[96m'
