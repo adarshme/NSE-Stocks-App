@@ -232,6 +232,6 @@ if __name__ == "__main__":
 		print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
 		MultiGet(Config.GetAllStockSymbols())
 
-print (StartEndString)
+	print (StartEndString)
 
-print (time.time() - st)
+	print (time.time() - st)
