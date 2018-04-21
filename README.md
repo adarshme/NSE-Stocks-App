@@ -1,7 +1,7 @@
 # NSE-Stocks-App
 Cross Platform App to quickly get real-time information about your stocks through a *CLI* or *GUI*.
 
-> The *National Stock Exchange of India Limited* (NSE) is the leading stock exchange of India, located in Mumbai . 
+> The *National Stock Exchange of India Limited* (NSE) is the leading stock exchange of India, located in Mumbai. 
 
 You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
 
@@ -38,7 +38,7 @@ Optional modules -
      Use `status` to see your list of stocks
 
  Wherever *STOCKSYMBOLS* have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces.
- If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/master/Stocks.py)
+ If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/master/Stocks.py).
 
  To call a command, type:-
    `python cli.py COMMAND`
