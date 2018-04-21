@@ -1,5 +1,6 @@
 # Leave a space between each Stock Symbol
-
+import time
+st = time.time()
 import Stocks
 import sys
 import config
@@ -230,4 +231,6 @@ else:
 	print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
 	MultiGet(Config.GetAllStockSymbols())
 
-	print (StartEndString)
+print (StartEndString)
+
+print (time.time() - st)

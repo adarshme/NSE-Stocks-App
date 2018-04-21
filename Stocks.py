@@ -1,14 +1,16 @@
 # Run this program to get all your stocks info at once.
 
 import sys
+import collections
+from bs4 import BeautifulSoup
+from urllib.request import Request, urlopen
+import json
 
 class Stocks():
 	def __init__(self):
 		self.LoadStocks ()
 
 	def LoadStocks (self):
-		import collections
-
 		self.StockSymbols = collections.OrderedDict()
 
 		# Add/Remove your Stocks here
@@ -57,10 +59,6 @@ class Stocks():
 		Url = self.UrlBuilder (StockSymbol)
 
 		if Url != None:
-			from bs4 import BeautifulSoup
-			from urllib.request import Request, urlopen
-			import json
-
 			hdr = {'User-Agent': 'Mozilla/5.0'}
 
 			req = Request(Url ,headers=hdr)

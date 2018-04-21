@@ -4,6 +4,7 @@ import sys
 from PyQt5.QtWidgets import (QLineEdit, QPushButton, QVBoxLayout, QApplication, QWidget, QLabel)
 from PyQt5.QtCore import Qt
 import Stocks
+import time
 
 StockApp = Stocks.Stocks()
 
@@ -69,8 +70,6 @@ class Window (QWidget):
 			QApplication.restoreOverrideCursor()
 
 		except Exception:
-			import time
-
 			QApplication.setOverrideCursor(Qt.ForbiddenCursor)
 			time.sleep (0.5)
 			QApplication.setOverrideCursor(Qt.ArrowCursor)
