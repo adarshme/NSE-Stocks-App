@@ -5,7 +5,6 @@ import collections
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import json
-import ctypes
 
 class Stocks():
 	def __init__(self):
@@ -90,19 +89,16 @@ class Stocks():
 
 class bcolors:
 	if sys.platform in "win32 cygwin":
-		kernel32 = ctypes.windll.kernel32
-		kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
-
-		LBLUE = '<ESC>[96m'
-		HEADER = '<ESC>[95m'
-		OKBLUE = '<ESC>[94m'
-		OKGREEN = '<ESC>[92m'
-		WARNING = '<ESC>[93m'
-		FAIL = '<ESC>[91m'
-		DWARNING = '<ESC>[90m'
-		ENDC = '<ESC>[0m'
-		BOLD = '<ESC>[1m'
-		UNDERLINE = '<ESC>[4m'
+		LBLUE = ''
+		HEADER = ''
+		OKBLUE = ''
+		OKGREEN = ''
+		WARNING = ''
+		FAIL = ''
+		DWARNING = ''
+		ENDC = ''
+		BOLD = ''
+		UNDERLINE = ''
 
 	else:
 		LBLUE = '\033[96m'
