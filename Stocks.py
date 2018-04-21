@@ -5,6 +5,7 @@ import collections
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import json
+import ctypes
 
 class Stocks():
 	def __init__(self):
@@ -43,7 +44,7 @@ class Stocks():
 				else:
 					print (" " + str(self.StockSymbols[Stock] + " "*(10 - len (self.StockSymbols[Stock])) + " :" + " " + AllData))
 
-			except Exception as e:
+			except Exception:
 				print ("Can't get {}".format (self.StockSymbols[Stock]), " "*(61 - len ("Can't get {}".format (self.StockSymbols[Stock]))))
 
 			print ()
@@ -89,6 +90,9 @@ class Stocks():
 
 class bcolors:
 	if sys.platform in "win32 cygwin":
+		kernel32 = ctypes.windll.kernel32
+		kernel32.SetConsoleMode(kernel32.GetStdHandle(-11), 7)
+
 		LBLUE = '<ESC>[96m'
 		HEADER = '<ESC>[95m'
 		OKBLUE = '<ESC>[94m'

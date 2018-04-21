@@ -1,5 +1,6 @@
 import configparser
 import Stocks
+import urllib.error
 
 StockApp = Stocks.Stocks()
 
@@ -17,8 +18,10 @@ class Config():
 
 	def AddStockSymbol(self, StockSymbol):
 		try:
-			Data = StockApp.ExtractStockPrice(StockSymbol)
+			Data = StockApp.ExtractStockPrice(StockSymbol.lower())
 		except IndexError:
+			Data = None
+		except urllib.error.HTTPError:
 			Data = None
 
 		if StockSymbol in self.GetAllStockSymbols():

@@ -28,7 +28,7 @@ def SimpleGet(StocksList = sys.argv):
 		try:
 			Data = StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
-		except Exception as e:
+		except Exception:
 			print ("Can't get", StocksList[i])
 			print ()
 			RequestComplete = False
@@ -85,7 +85,7 @@ def MultiStockPrice(Stock, lock):
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
-	except Exception as e:
+	except Exception:
 		print ("Can't get", Stock)
 		print ()
 		RequestComplete = False
