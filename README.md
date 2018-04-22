@@ -3,12 +3,12 @@ Cross Platform App to quickly get real-time information about your stocks throug
 
 > The *National Stock Exchange of India Limited* (NSE) is the leading stock exchange of India, located in Mumbai. 
 
-You need Python 3 installed. Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
+You need Python 3 installed [(how to install Python)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-). Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
 
 Note:- **This is still in development. Stay tuned for more features!** Any suggestions are always welcome.
 
 ***Required modules*** (Not in stdlib)-
-  ***Beautiful Soup 4***
+  ***Beautiful Soup 4*** [(How to install Beautiful Soup 4)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
   
 Optional modules -
   *PyQT5* (For GUI)
