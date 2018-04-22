@@ -1,12 +1,16 @@
 # Run this program to get all your stocks info at once.
 
+import sys
+import collections
+from bs4 import BeautifulSoup
+from urllib.request import Request, urlopen
+import json
+
 class Stocks():
 	def __init__(self):
 		self.LoadStocks ()
 
 	def LoadStocks (self):
-		import collections
-
 		self.StockSymbols = collections.OrderedDict()
 
 		# Add/Remove your Stocks here
@@ -39,7 +43,7 @@ class Stocks():
 				else:
 					print (" " + str(self.StockSymbols[Stock] + " "*(10 - len (self.StockSymbols[Stock])) + " :" + " " + AllData))
 
-			except Exception as e:
+			except Exception:
 				print ("Can't get {}".format (self.StockSymbols[Stock]), " "*(61 - len ("Can't get {}".format (self.StockSymbols[Stock]))))
 
 			print ()
@@ -55,10 +59,6 @@ class Stocks():
 		Url = self.UrlBuilder (StockSymbol)
 
 		if Url != None:
-			from bs4 import BeautifulSoup
-			from urllib.request import Request, urlopen
-			import json
-
 			hdr = {'User-Agent': 'Mozilla/5.0'}
 
 			req = Request(Url ,headers=hdr)
@@ -88,28 +88,29 @@ class Stocks():
 			return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
 
 class bcolors:
-	LBLUE = '\033[96m'
-	HEADER = '\033[95m'
-	OKBLUE = '\033[94m'
-	OKGREEN = '\033[92m'
-	WARNING = '\033[93m'
-	FAIL = '\033[91m'
-	DWARNING = '\033[90m'
-	ENDC = '\033[0m'
-	BOLD = '\033[1m'
-	UNDERLINE = '\033[4m'
+	if sys.platform in "win32 cygwin":
+		LBLUE = ''
+		HEADER = ''
+		OKBLUE = ''
+		OKGREEN = ''
+		WARNING = ''
+		FAIL = ''
+		DWARNING = ''
+		ENDC = ''
+		BOLD = ''
+		UNDERLINE = ''
 
-class nocolors:
-	LBLUE = ''
-	HEADER = ''
-	OKBLUE = ''
-	OKGREEN = ''
-	WARNING = ''
-	FAIL = ''
-	DWARNING = ''
-	ENDC = ''
-	BOLD = ''
-	UNDERLINE = ''
+	else:
+		LBLUE = '\033[96m'
+		HEADER = '\033[95m'
+		OKBLUE = '\033[94m'
+		OKGREEN = '\033[92m'
+		WARNING = '\033[93m'
+		FAIL = '\033[91m'
+		DWARNING = '\033[90m'
+		ENDC = '\033[0m'
+		BOLD = '\033[1m'
+		UNDERLINE = '\033[4m'
 
 if __name__ == '__main__':
 	StartEndString = "------------------------------------"

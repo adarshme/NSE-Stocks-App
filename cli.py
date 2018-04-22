@@ -8,10 +8,7 @@ import multiprocessing
 StartEndString = "------------------------------------"
 
 StockApp = Stocks.Stocks()
-if sys.platform in "win32 cygwin":
-	bcolors = Stocks.nocolors()
-else:
-	bcolors = Stocks.bcolors()
+bcolors = Stocks.bcolors()
 Config = config.Config()
 
 # Change this value to control the coloring in the terminal.
@@ -30,7 +27,7 @@ def SimpleGet(StocksList = sys.argv):
 		try:
 			Data = StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
-		except Exception as e:
+		except Exception:
 			print ("Can't get", StocksList[i])
 			print ()
 			RequestComplete = False
@@ -87,7 +84,7 @@ def MultiStockPrice(Stock, lock):
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
-	except Exception as e:
+	except Exception:
 		print ("Can't get", Stock)
 		print ()
 		RequestComplete = False
@@ -170,62 +167,71 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive():
 			pass
 
-if __name__ == '__main__':
-	if sys.argv[1] == "get":
-		if sys.argv[2] == "all-m":
-			MultiGet(Config.GetAllStockSymbols())
+if __name__ == "__main__":
+	if len(sys.argv) > 1:
+		if sys.argv[1] == "get":
+			if sys.argv[2] == "all-m":
+				MultiGet(Config.GetAllStockSymbols())
 
-		elif sys.argv[2] == "all":
-			SimpleGet(Config.GetAllStockSymbols())
+			elif sys.argv[2] == "all":
+				SimpleGet(Config.GetAllStockSymbols())
+
+			else:
+				SimpleGet()
+
+		elif sys.argv[1] == "add":
+			for i in range (2, len(sys.argv)):
+				Config.AddStockSymbol(sys.argv[i])
+
+		elif sys.argv[1] == "remove":
+			for i in range (2, len(sys.argv)):
+				Config.RemoveStockSymbol(sys.argv[i])
+
+		elif sys.argv[1] == "status":
+			print ("Following stock symbols have been added:-")
+			for i in Config.GetAllStockSymbols():
+				print (" ", i)
+
+		elif sys.argv[1] == "help":
+			message = '''
+		 List of commands available: -
+		   1) get all
+		   2) get
+		   3) add
+		   4) remove
+		   5) status
+
+		   1) get all:-
+		     Use 'get all' to show all your stock values.
+		     Use `get all-m` to get faster results, but stocks are shown randomly.
+
+		   2) get:-
+		     Use 'get STOCKSYMBOLS' to get the values of particular stocks.
+
+		   3) add:-
+		     Use 'add STOCKSYMBOLS' to add stocks to the list of all your stocks.
+
+		   4) remove:-
+		     Use 'remove STOCKSYMBOLS' to remove stocks from your list of stocks.
+
+		   5) status:-
+		     Use 'status' to see your list of stocks
+
+		 Wherever STOCKSYMBOLS have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces
+
+		 To call a command, type:-
+		   python cli.py COMMAND
+
+		 if you are in a system which has python2 by default, type:-
+		   python3 cli.py COMMAND'''
+
+			print (message)
 
 		else:
-			SimpleGet()
+			print (bcolors.OKBLUE + "I don't know that command!" + bcolors.ENDC)
 
-	elif sys.argv[1] == "add":
-		for i in range (2, len(sys.argv)):
-			Config.AddStockSymbol(sys.argv[i])
-
-	elif sys.argv[1] == "remove":
-		for i in range (2, len(sys.argv)):
-			Config.RemoveStockSymbol(sys.argv[i])
-
-	elif sys.argv[1] == "status":
-		print ("Following stock symbols have been added:-")
-		for i in Config.GetAllStockSymbols():
-			print (" ", i)
-
-	elif sys.argv[1] == "help":
-		message = '''
-	 List of commands available: -
-	   1) get all
-	   2) get
-	   3) add
-	   4) remove
-	   5) status
-
-	   1) get all:-
-	     Use 'get all' to show all your stock values.
-
-	   2) get:-
-	     Use 'get STOCKSYMBOLS' to get the values of particular stocks.
-
-	   3) add:-
-	     Use 'add STOCKSYMBOLS' to add stocks to the list of all your stocks.
-
-	   4) remove:-
-	     Use 'remove STOCKSYMBOLS' to remove stocks from your list of stocks.
-
-	   5) status:-
-	     Use 'status' to see your list of stocks
-
-	 Wherever STOCKSYMBOLS have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces
-
-	 To call a command, type:-
-	   python cli.py COMMAND
-
-	 if you are in a system which has python2 by default, type:-
-	   python3 cli.py COMMAND'''
-
-		print (message)
+	else:
+		print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
+		MultiGet(Config.GetAllStockSymbols())
 
 	print (StartEndString)

@@ -1,5 +1,6 @@
 import configparser
 import Stocks
+import urllib.error
 
 StockApp = Stocks.Stocks()
 
@@ -17,12 +18,14 @@ class Config():
 
 	def AddStockSymbol(self, StockSymbol):
 		try:
-			Data = StockApp.ExtractStockPrice(StockSymbol)
+			Data = StockApp.ExtractStockPrice(StockSymbol.lower())
 		except IndexError:
+			Data = None
+		except urllib.error.HTTPError:
 			Data = None
 
 		if StockSymbol in self.GetAllStockSymbols():
-			print (StockSymbol, "has already been added")
+			print (StockSymbol.lower(), "has already been added")
 			Data = False
 
 		if Data:
@@ -33,7 +36,7 @@ class Config():
 			print ("Added", StockApp.companyName)
 
 		elif Data == None:
-			print ("Couln't find", StockSymbol)
+			print ("Couln't find", StockSymbol.lower())
 
 	def RemoveStockSymbol(self, StockSymbol):
 		if self.config.has_option("Stocks", StockSymbol):
@@ -41,12 +44,12 @@ class Config():
 			RemoveSuccessful = True
 
 		else:
-			print (StockSymbol, "is not in your list")
+			print (StockSymbol.lower(), "is not in your list")
 			RemoveSuccessful = False
 
 		self.WriteFile()
 		if RemoveSuccessful:
-			print ("Removed", StockSymbol)
+			print ("Removed", StockSymbol.lower())
 		return True
 
 	def WriteFile(self):
