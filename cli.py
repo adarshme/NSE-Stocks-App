@@ -1,20 +1,21 @@
 # Leave a space between each Stock Symbol
 
-import Stocks
-import sys
-import config
-import multiprocessing
+import Stocks #Main API
+import sys #To get Command Line arguments
+import config #Config file API
+import multiprocessing #It's obviuos :)
 
-StartEndString = "------------------------------------"
+StartEndString = "------------------------------------" #For neat printing.
 
-StockApp = Stocks.Stocks()
-bcolors = Stocks.bcolors()
-Config = config.Config()
+StockApp = Stocks.Stocks() #Initialize API
+bcolors = Stocks.bcolors() #Initialize terminal colours
+Config = config.Config() #Initialize Config file API
 
 # Change this value to control the coloring in the terminal.
-thresh = 2.5
+thresh = 2.5 #Doesn't matter for windows. (Atleast for now)
 
 def SimpleGet(StocksList = sys.argv):
+	#Check if argument passed or not and set start and end values accordingly.
 	if StocksList == sys.argv:
 		start = 2
 		end = len(sys.argv)
