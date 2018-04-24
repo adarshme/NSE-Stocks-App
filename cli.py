@@ -24,6 +24,7 @@ def SimpleGet(StocksList = sys.argv):
 		start = 0
 		end = len(StocksList)
 
+	#Loop each stock symbol from StocksList
 	for i in range (start, end):
 		try:
 			Data = StockApp.ExtractStockPrice(StocksList[i])
@@ -34,6 +35,7 @@ def SimpleGet(StocksList = sys.argv):
 			RequestComplete = False
 
 		try:
+			#Get values from API.
 			lastPrice = StockApp.lastPrice
 			pChange = StockApp.pChange
 			change = StockApp.change
@@ -41,6 +43,7 @@ def SimpleGet(StocksList = sys.argv):
 			companyName = StockApp.companyName
 
 		except AttributeError:
+			#Attribute error when above values do not exist.
 			pass
 
 		End = bcolors.ENDC
@@ -61,6 +64,14 @@ def SimpleGet(StocksList = sys.argv):
 			else:
 				Start = ""
 
+			print (StartEndString)
+			print ("Stock:", Start, companyName, End)
+			print ("Last Price:", bcolors.BOLD, lastPrice, End)
+			print ("Percentage Change:", Start, pChange, End)
+			print ("Absolute Change:", Start, change, End)
+			print ("Last Updated Time:", lastUpdateTime)
+			print ()
+
 		'''
 		print (StartEndString)
 		print ()
@@ -71,15 +82,6 @@ def SimpleGet(StocksList = sys.argv):
 		print (Start, "Last Updated Time:", lastUpdateTime, End)
 		print ()
 		print (StartEndString)'''
-
-		if RequestComplete:
-			print (StartEndString)
-			print ("Stock:", Start, companyName, End)
-			print ("Last Price:", bcolors.BOLD, lastPrice, End)
-			print ("Percentage Change:", Start, pChange, End)
-			print ("Absolute Change:", Start, change, End)
-			print ("Last Updated Time:", lastUpdateTime)
-			print ()
 
 def MultiStockPrice(Stock, lock):
 	try:
