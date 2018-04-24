@@ -30,6 +30,7 @@ def SimpleGet(StocksList = sys.argv):
 			Data = StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
 		except Exception:
+			#No internet, stock symbol which doesn't exist, etc.
 			print ("Can't get", StocksList[i])
 			print ()
 			RequestComplete = False
@@ -46,25 +47,26 @@ def SimpleGet(StocksList = sys.argv):
 			#Attribute error when above values do not exist.
 			pass
 
-		End = bcolors.ENDC
+		End = bcolors.ENDC #To close off ANSI codes.
 
 		if RequestComplete:
+			#Checks stock values and sets ANSI codes for clour, bold, etc.
 			if float(pChange) > thresh:
-				Start = bcolors.OKGREEN + bcolors.BOLD
+				Start = bcolors.OKGREEN + bcolors.BOLD #Green and bold
 
 			elif float(pChange) < -thresh:
-				Start = bcolors.FAIL
+				Start = bcolors.FAIL #Red
 
 			elif float(pChange) < 0 and float(pChange) > -thresh:
-				Start = bcolors.HEADER
+				Start = bcolors.HEADER #Purple
 
 			elif float(pChange) > 0 and float(pChange) < thresh:
-				Start = bcolors.WARNING
+				Start = bcolors.WARNING #Yellow
 
 			else:
 				Start = ""
 
-			print (StartEndString)
+			print (StartEndString) #For neat printing.
 			print ("Stock:", Start, companyName, End)
 			print ("Last Price:", bcolors.BOLD, lastPrice, End)
 			print ("Percentage Change:", Start, pChange, End)
@@ -83,7 +85,7 @@ def SimpleGet(StocksList = sys.argv):
 		print ()
 		print (StartEndString)'''
 
-def MultiStockPrice(Stock, lock):
+def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing gets messed up.
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
