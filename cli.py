@@ -1,20 +1,21 @@
 # Leave a space between each Stock Symbol
 
-import Stocks
-import sys
-import config
-import multiprocessing
+import Stocks #Main API
+import sys #To get Command Line arguments
+import config #Config file API
+import multiprocessing #It's obviuos :)
 
-StartEndString = "------------------------------------"
+StartEndString = "------------------------------------" #For neat printing.
 
-StockApp = Stocks.Stocks()
-bcolors = Stocks.bcolors()
-Config = config.Config()
+StockApp = Stocks.Stocks() #Initialize API
+bcolors = Stocks.bcolors() #Initialize terminal colours
+Config = config.Config() #Initialize Config file API
 
 # Change this value to control the coloring in the terminal.
-thresh = 2.5
+thresh = 2.5 #Doesn't matter for windows. (Atleast for now)
 
 def SimpleGet(StocksList = sys.argv):
+	#Check if argument passed or not and set start and end values accordingly.
 	if StocksList == sys.argv:
 		start = 2
 		end = len(sys.argv)
@@ -23,16 +24,19 @@ def SimpleGet(StocksList = sys.argv):
 		start = 0
 		end = len(StocksList)
 
+	#Loop each stock symbol from StocksList
 	for i in range (start, end):
 		try:
 			Data = StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
 		except Exception:
+			#No internet, stock symbol which doesn't exist, etc.
 			print ("Can't get", StocksList[i])
 			print ()
 			RequestComplete = False
 
 		try:
+			#Get values from API.
 			lastPrice = StockApp.lastPrice
 			pChange = StockApp.pChange
 			change = StockApp.change
@@ -40,25 +44,35 @@ def SimpleGet(StocksList = sys.argv):
 			companyName = StockApp.companyName
 
 		except AttributeError:
+			#Attribute error when above values do not exist.
 			pass
 
-		End = bcolors.ENDC
+		End = bcolors.ENDC #To close off ANSI codes.
 
 		if RequestComplete:
+			#Checks stock values and sets ANSI codes for clour, bold, etc.
 			if float(pChange) > thresh:
-				Start = bcolors.OKGREEN + bcolors.BOLD
+				Start = bcolors.OKGREEN + bcolors.BOLD #Green and bold
 
 			elif float(pChange) < -thresh:
-				Start = bcolors.FAIL
+				Start = bcolors.FAIL #Red
 
 			elif float(pChange) < 0 and float(pChange) > -thresh:
-				Start = bcolors.HEADER
+				Start = bcolors.HEADER #Purple
 
 			elif float(pChange) > 0 and float(pChange) < thresh:
-				Start = bcolors.WARNING
+				Start = bcolors.WARNING #Yellow
 
 			else:
 				Start = ""
+
+			print (StartEndString) #For neat printing.
+			print ("Stock:", Start, companyName, End)
+			print ("Last Price:", bcolors.BOLD, lastPrice, End)
+			print ("Percentage Change:", Start, pChange, End)
+			print ("Absolute Change:", Start, change, End)
+			print ("Last Updated Time:", lastUpdateTime)
+			print ()
 
 		'''
 		print (StartEndString)
@@ -71,16 +85,7 @@ def SimpleGet(StocksList = sys.argv):
 		print ()
 		print (StartEndString)'''
 
-		if RequestComplete:
-			print (StartEndString)
-			print ("Stock:", Start, companyName, End)
-			print ("Last Price:", bcolors.BOLD, lastPrice, End)
-			print ("Percentage Change:", Start, pChange, End)
-			print ("Absolute Change:", Start, change, End)
-			print ("Last Updated Time:", lastUpdateTime)
-			print ()
-
-def MultiStockPrice(Stock, lock):
+def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing gets messed up.
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True

@@ -1,3 +1,4 @@
+import os
 import configparser
 import Stocks
 import urllib.error
@@ -59,7 +60,7 @@ class Config():
 		self.LoadConfigFile()
 
 	def LoadConfigFile(self):
-		self.File = self.config.read('config.ini')
+		self.File = self.config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
 
 	def GetAllStockSymbols(self):
 		StockSymbols = [i for i in self.config.options("Stocks")]
