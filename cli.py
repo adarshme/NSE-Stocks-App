@@ -90,11 +90,13 @@ def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing g
 		Data = StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
 	except Exception:
+		#No internet, stock symbol which doesn't exist, etc.
 		print ("Can't get", Stock)
 		print ()
 		RequestComplete = False
 
 	try:
+		#Assign values
 		lastPrice = StockApp.lastPrice
 		pChange = StockApp.pChange
 		change = StockApp.change
@@ -133,7 +135,7 @@ def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing g
 	print ()
 	print (StartEndString)'''
 
-	lock.acquire()
+	lock.acquire() #Acquire print lock
 
 	if RequestComplete:
 		print (StartEndString)
@@ -143,12 +145,10 @@ def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing g
 		print ("Absolute Change:", Start, change, End)
 		print ("Last Updated Time:", lastUpdateTime)
 		print ()
-		lock.release()
+		lock.release() #Release print lock
 
 	else:
-		lock.release()
-
-	return True
+		lock.release() #Release print lock
 
 def MultiGet(StocksList = sys.argv):
 	lock = multiprocessing.Lock()
