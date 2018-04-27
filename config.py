@@ -54,7 +54,7 @@ class Config():
 		return True
 
 	def WriteFile(self):
-		with open('config.ini', 'w') as configfile:
+		with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'), 'w') as configfile:
 			self.config.write (configfile)
 
 		self.LoadConfigFile()
