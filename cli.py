@@ -151,7 +151,8 @@ def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing g
 		lock.release() #Release print lock
 
 def MultiGet(StocksList = sys.argv):
-	lock = multiprocessing.Lock()
+	lock = multiprocessing.Lock() #For print lock argument.
+	#Check if argument passed or not and set start and end values accordingly.
 	if StocksList == sys.argv:
 		start = 2
 		end = len(sys.argv)
@@ -160,29 +161,33 @@ def MultiGet(StocksList = sys.argv):
 		start = 0
 		end = len(StocksList)
 
-	Processes = []
+	Processes = [] #To store each process.
 
 	for i in range (start, end):
-		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i], lock, )))
+		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i], lock, ))) #Create frocess for each stock symbol
 
 	for i in Processes:
-		i.start()
+		i.start() #Start all processes
 
 	for i in Processes:
-		while i.is_alive():
+		while i.is_alive(): #Standby till every processes is complete.
 			pass
 
-if __name__ == "__main__":
-	if len(sys.argv) > 1:
+if __name__ == "__main__": #Absolutely needed for windows.
+	if len(sys.argv) > 1: #If some command has been given.
 		if sys.argv[1] == "get":
-			if sys.argv[2] == "all-m":
-				MultiGet(Config.GetAllStockSymbols())
+			try:
+				if sys.argv[2] == "all-m": #Multiprocessing
+					MultiGet(Config.GetAllStockSymbols())
 
-			elif sys.argv[2] == "all":
-				SimpleGet(Config.GetAllStockSymbols())
+				elif sys.argv[2] == "all": #Sequential
+					SimpleGet(Config.GetAllStockSymbols())
 
-			else:
-				SimpleGet()
+				else:
+					SimpleGet() #Default
+
+			except IndexError:
+				print ()
 
 		elif sys.argv[1] == "add":
 			for i in range (2, len(sys.argv)):
@@ -195,7 +200,7 @@ if __name__ == "__main__":
 		elif sys.argv[1] == "status":
 			print ("Following stock symbols have been added:-")
 			for i in Config.GetAllStockSymbols():
-				print (" ", i)
+				print (" ", i) #Neat printing
 
 		elif sys.argv[1] == "help":
 			message = '''
@@ -233,10 +238,12 @@ if __name__ == "__main__":
 			print (message)
 
 		else:
+			#Wrong command
 			print (bcolors.OKBLUE + "I don't know that command!" + bcolors.ENDC)
 
 	else:
+		#If no command
 		print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
-		MultiGet(Config.GetAllStockSymbols())
+		MultiGet(Config.GetAllStockSymbols()) #Execute default command.
 
-	print (StartEndString)
+	print (StartEndString) #Prints right at the end of program.
