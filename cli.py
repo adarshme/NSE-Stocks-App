@@ -173,6 +173,10 @@ def MultiGet(StocksList = sys.argv):
 		while i.is_alive(): #Standby till every processes is complete.
 			pass
 
+def ExecuteDefault():
+	print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
+	MultiGet(Config.GetAllStockSymbols()) #Execute default command.
+
 if __name__ == "__main__": #Absolutely needed for windows.
 	if len(sys.argv) > 1: #If some command has been given.
 		if sys.argv[1] == "get":
@@ -242,8 +246,7 @@ if __name__ == "__main__": #Absolutely needed for windows.
 			print (bcolors.OKBLUE + "I don't know that command!" + bcolors.ENDC)
 
 	else:
-		#If no command
-		print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
-		MultiGet(Config.GetAllStockSymbols()) #Execute default command.
+		#If no command passed
+		ExecuteDefault()
 
 	print (StartEndString) #Prints right at the end of program.
