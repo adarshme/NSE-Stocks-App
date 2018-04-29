@@ -84,4 +84,4 @@ class Config():
 	def GetAllSettings(self):
 		Settings = [i for i in self.config.options("Settings")]
 
-		return GetAllSettings
+		return Settings
