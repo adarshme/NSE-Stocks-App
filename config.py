@@ -15,7 +15,21 @@ class Config():
 			self.config["Stocks"] = {}
 			self.WriteFile()
 
-			self.LoadConfigFile()
+		self.FillSettings()
+
+		self.LoadConfigFile()
+
+	def FillSettings(self):
+		if not self.config.has_section("Settings"):
+			self.config["Settings"] ={}
+
+		if not self.config.has_option("Settings", "parser"):
+			self.config["Settings"]["parser"] = "html.parser"
+
+		if not self.config.has_option("Settings", "default"):
+			self.config["Settings"]["default"] = "get all-m"
+
+		self.WriteFile()
 
 	def AddStockSymbol(self, StockSymbol):
 		try:
@@ -66,3 +80,8 @@ class Config():
 		StockSymbols = [i for i in self.config.options("Stocks")]
 
 		return StockSymbols
+
+	def GetAllSettings(self):
+		Settings = [i for i in self.config.options("Settings")]
+
+		return GetAllSettings
