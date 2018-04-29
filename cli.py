@@ -177,14 +177,14 @@ def ExecuteDefault():
 	print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
 	MultiGet(Config.GetAllStockSymbols()) #Execute default command.
 
-if __name__ == "__main__": #Absolutely needed for windows.
-	if len(sys.argv) > 1: #If some command has been given.
-		if sys.argv[1] == "get":
+def CommandLineArgs(argslist = sys.argv):
+	if len(argslist) > 1: #If some command has been given.
+		if argslist[1] == "get":
 			try:
-				if sys.argv[2] == "all-m": #Multiprocessing
+				if argslist[2] == "all-m": #Multiprocessing
 					MultiGet(Config.GetAllStockSymbols())
 
-				elif sys.argv[2] == "all": #Sequential
+				elif argslist[2] == "all": #Sequential
 					SimpleGet(Config.GetAllStockSymbols())
 
 				else:
@@ -193,20 +193,20 @@ if __name__ == "__main__": #Absolutely needed for windows.
 			except IndexError:
 				print ()
 
-		elif sys.argv[1] == "add":
-			for i in range (2, len(sys.argv)):
-				Config.AddStockSymbol(sys.argv[i])
+		elif argslist[1] == "add":
+			for i in range (2, len(argslist)):
+				Config.AddStockSymbol(argslist[i])
 
-		elif sys.argv[1] == "remove":
-			for i in range (2, len(sys.argv)):
-				Config.RemoveStockSymbol(sys.argv[i])
+		elif argslist[1] == "remove":
+			for i in range (2, len(argslist)):
+				Config.RemoveStockSymbol(argslist[i])
 
-		elif sys.argv[1] == "status":
+		elif argslist[1] == "status":
 			print ("Following stock symbols have been added:-")
 			for i in Config.GetAllStockSymbols():
 				print (" ", i) #Neat printing
 
-		elif sys.argv[1] == "help":
+		elif argslist[1] == "help":
 			message = '''
 		 List of commands available: -
 		   1) get all
@@ -248,5 +248,9 @@ if __name__ == "__main__": #Absolutely needed for windows.
 	else:
 		#If no command passed
 		ExecuteDefault()
+
+
+if __name__ == "__main__": #Absolutely needed for windows.
+	CommandLineArgs()
 
 	print (StartEndString) #Prints right at the end of program.
