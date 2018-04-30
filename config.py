@@ -81,6 +81,8 @@ class Config():
 		return StockSymbols
 
 	def GetAllSettings(self):
-		Settings = [i for i in self.config.options("Settings")]
+		Settings ={}
+		for i in self.config["Settings"]:
+			Settings[i] = self.config.get("Settings", i)
 
 		return Settings
