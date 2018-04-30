@@ -3,8 +3,6 @@ import configparser
 import Stocks
 import urllib.error
 
-StockApp = Stocks.Stocks()
-
 class Config():
 	def __init__(self):
 		self.config = configparser.ConfigParser()
@@ -32,6 +30,7 @@ class Config():
 		self.WriteFile()
 
 	def AddStockSymbol(self, StockSymbol):
+		StockApp = Stocks.Stocks()
 		try:
 			Data = StockApp.ExtractStockPrice(StockSymbol.lower())
 		except IndexError:
