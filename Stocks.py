@@ -5,6 +5,9 @@ import collections
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import json
+import config
+
+Config = config.Config()
 
 class Stocks():
 	def __init__(self):
@@ -65,7 +68,7 @@ class Stocks():
 
 			page = urlopen(req)
 
-			soup = BeautifulSoup(page, "html.parser")
+			soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
