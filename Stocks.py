@@ -68,7 +68,11 @@ class Stocks():
 
 			page = urlopen(req)
 
-			soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
+			try:
+				soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
+			except Exception as e:
+				print ("Parser in settings not installed. Using default parser.")
+				soup = BeautifulSoup(page, "html.parser")				
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
