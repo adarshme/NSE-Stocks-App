@@ -7,7 +7,7 @@ from urllib.request import Request, urlopen
 import json
 import config
 
-Config = config.Config()
+#Config = config.Config()
 
 class Stocks():
 	def __init__(self):
@@ -70,9 +70,9 @@ class Stocks():
 
 			try:
 				soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
+			
 			except Exception as e:
-				print ("Parser in settings not installed. Using default parser.")
-				soup = BeautifulSoup(page, "html.parser")				
+				soup = BeautifulSoup(page, "html.parser")	
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
@@ -90,7 +90,6 @@ class Stocks():
 			self.companyName = MainInfoDict["companyName"]
 
 			self.lastUpdateTime = InfoDict["lastUpdateTime"]
-
 
 			return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
 
