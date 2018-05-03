@@ -1,11 +1,11 @@
-import os
-import configparser
-import Stocks
-import urllib.error
+import os # For os.path to get complete config file dir.
+import configparser # Make and manage config files
+import Stocks # Main API
+import urllib.error # To make an exception when no internet and other http error
 
 class Config():
 	def __init__(self):
-		self.config = configparser.ConfigParser()
+		self.config = configparser.ConfigParser() # Init
 
 		self.LoadConfigFile()
 
