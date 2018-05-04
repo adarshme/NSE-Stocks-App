@@ -9,30 +9,30 @@ class Config():
 
 		self.LoadConfigFile()
 
-		if self.File == []:
-			self.config["Stocks"] = {}
-			self.WriteFile()
+		if self.File == []: # When config.ini doesn't exist
+			self.config["Stocks"] = {} # Make Stocks section
+			self.WriteFile() # Save Changes
 
 		self.FillSettings()
 
-		self.LoadConfigFile()
+		self.LoadConfigFile() # Load file after wrtiting to make sure everything is up to date.
 
 	def FillSettings(self):
-		if not self.config.has_section("Settings"):
-			self.config["Settings"] ={}
+		if not self.config.has_section("Settings"): # If Settings section doesn't exist
+			self.config["Settings"] ={} # Make Settings section
 
 		if not self.config.has_option("Settings", "parser"):
-			self.config["Settings"]["parser"] = "html.parser"
+			self.config["Settings"]["parser"] = "html.parser" #Add option and value
 
 		if not self.config.has_option("Settings", "default"):
-			self.config["Settings"]["default"] = "get all-m"
+			self.config["Settings"]["default"] = "get all-m" #Add option and value
 
-		self.WriteFile()
+		self.WriteFile() # Save Changes
 
 	def AddStockSymbol(self, StockSymbol):
 		StockApp = Stocks.Stocks()
 		try:
-			Data = StockApp.ExtractStockPrice(StockSymbol.lower())
+			Data = StockApp.ExtractStockPrice(StockSymbol.lower()) # To check if stock symbol is of a real stock
 		except IndexError:
 			Data = None
 		except urllib.error.HTTPError:
