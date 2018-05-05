@@ -5,6 +5,9 @@ import collections
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import json
+import config
+
+Config = config.Config()
 
 class Stocks():
 	def __init__(self):
@@ -65,7 +68,12 @@ class Stocks():
 
 			page = urlopen(req)
 
-			soup = BeautifulSoup(page, "html.parser")
+			try:
+				soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
+			
+			except Exception as e:
+				soup = BeautifulSoup(page, "html.parser")
+				print (Config.GetAllSettings()["parser"], "not installed. Using stock parser.")
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
@@ -83,7 +91,6 @@ class Stocks():
 			self.companyName = MainInfoDict["companyName"]
 
 			self.lastUpdateTime = InfoDict["lastUpdateTime"]
-
 
 			return str(" "*(8 - len(self.lastPrice)) + self.lastPrice + "; " + " "*(5 - len(self.pChange)) + self.pChange + "; " + " "*(6 - len(self.change)) + self.change + ";    " + self.lastUpdateTime)
 

@@ -1,25 +1,38 @@
-import os
-import configparser
-import Stocks
-import urllib.error
-
-StockApp = Stocks.Stocks()
+import os # For os.path to get complete config file dir.
+import configparser # Make and manage config files
+import Stocks # Main API
+import urllib.error # To make an exception when no internet and other http error
 
 class Config():
 	def __init__(self):
-		self.config = configparser.ConfigParser()
+		self.config = configparser.ConfigParser() # Init
 
 		self.LoadConfigFile()
 
-		if self.File == []:
-			self.config["Stocks"] = {}
-			self.WriteFile()
+		if self.File == []: # When config.ini doesn't exist
+			self.config["Stocks"] = {} # Make Stocks section
+			self.WriteFile() # Save Changes
 
-			self.LoadConfigFile()
+		self.FillSettings()
+
+		self.LoadConfigFile() # Load file after wrtiting to make sure everything is up to date.
+
+	def FillSettings(self):
+		if not self.config.has_section("Settings"): # If Settings section doesn't exist
+			self.config["Settings"] ={} # Make Settings section
+
+		if not self.config.has_option("Settings", "parser"):
+			self.config["Settings"]["parser"] = "html.parser" #Add option and value
+
+		if not self.config.has_option("Settings", "default"):
+			self.config["Settings"]["default"] = "get all-m" #Add option and value
+
+		self.WriteFile() # Save Changes
 
 	def AddStockSymbol(self, StockSymbol):
+		StockApp = Stocks.Stocks()
 		try:
-			Data = StockApp.ExtractStockPrice(StockSymbol.lower())
+			Data = StockApp.ExtractStockPrice(StockSymbol.lower()) # To check if stock symbol is of a real stock
 		except IndexError:
 			Data = None
 		except urllib.error.HTTPError:
@@ -66,3 +79,10 @@ class Config():
 		StockSymbols = [i for i in self.config.options("Stocks")]
 
 		return StockSymbols
+
+	def GetAllSettings(self):
+		Settings ={}
+		for i in self.config["Settings"]:
+			Settings[i] = self.config.get("Settings", i)
+
+		return Settings
