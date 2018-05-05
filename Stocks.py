@@ -7,7 +7,7 @@ from urllib.request import Request, urlopen
 import json
 import config
 
-#Config = config.Config()
+Config = config.Config()
 
 class Stocks():
 	def __init__(self):
@@ -72,7 +72,8 @@ class Stocks():
 				soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
 			
 			except Exception as e:
-				soup = BeautifulSoup(page, "html.parser")	
+				soup = BeautifulSoup(page, "html.parser")
+				print (Config.GetAllSettings()["parser"], "not installed. Using stock parser.")
 
 			JumbledInfo = str(soup.find("div", {"id": "responseDiv"}))
 
