@@ -67,13 +67,13 @@ class Config():
 		return True
 
 	def WriteFile(self):
-		with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'), 'w') as configfile:
-			self.config.write (configfile)
+		with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'), 'w') as configfile: # So that program works when run from another dir.
+			self.config.write (configfile) # Save Changes
 
-		self.LoadConfigFile()
+		self.LoadConfigFile() # Reload file.
 
 	def LoadConfigFile(self):
-		self.File = self.config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini'))
+		self.File = self.config.read(os.path.join(os.path.abspath(os.path.dirname(__file__)), 'config.ini')) # So that program works when run from another dir.
 
 	def GetAllStockSymbols(self):
 		StockSymbols = [i for i in self.config.options("Stocks")]
