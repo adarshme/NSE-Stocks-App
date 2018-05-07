@@ -42,7 +42,7 @@ class Config():
 			print (StockSymbol.lower(), "has already been added")
 			Data = False
 
-		if Data:
+		if Data: # If data has some value and not None
 			self.config["Stocks"][StockSymbol] = StockApp.companyName
 
 			self.WriteFile()
@@ -50,15 +50,15 @@ class Config():
 			print ("Added", StockApp.companyName)
 
 		elif Data == None:
-			print ("Couln't find", StockSymbol.lower())
+			print ("Couln't find", StockSymbol.lower()) # Error Message
 
 	def RemoveStockSymbol(self, StockSymbol):
-		if self.config.has_option("Stocks", StockSymbol):
+		if self.config.has_option("Stocks", StockSymbol): # Check if stock symbol has been added before
 			self.config.remove_option("Stocks", StockSymbol)
 			RemoveSuccessful = True
 
 		else:
-			print (StockSymbol.lower(), "is not in your list")
+			print (StockSymbol.lower(), "is not in your list") # Error message when stock symbol has not even been added
 			RemoveSuccessful = False
 
 		self.WriteFile()
