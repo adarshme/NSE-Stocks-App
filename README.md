@@ -55,5 +55,5 @@ Optional modules -
 
 ### Extra Instructions for Power Users:-
    - To use another parser, say lxml, open config.ini, under Settings section, find the parser option and set it accordingly.
-
+   - To run the program from anywhere, add the line - `alias ShortcutName="path/to/cli.py"` in ~/.bash_aliases and run using `ShortcutName COMMAND`
 *Developed and tested extensively on Ubuntu 16.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. May 5 2018.*
