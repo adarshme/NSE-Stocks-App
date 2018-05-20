@@ -174,8 +174,10 @@ def MultiGet(StocksList = sys.argv):
 			pass
 
 def ExecuteDefault():
-	print (bcolors.OKBLUE + "No command found. Executing default: " + "get all-m" + bcolors.ENDC)
-	MultiGet(Config.GetAllStockSymbols()) #Execute default command.
+	Settings = Config.GetAllSettings()
+	Default = Settings["default"]
+	print (bcolors.OKBLUE + "No command found. Executing default: " + Default + bcolors.ENDC)
+	CommandLineArgs([" ", *Default.split()]) #Execute default command.
 
 def CommandLineArgs(argslist = sys.argv):
 	if len(argslist) > 1: #If some command has been given.
