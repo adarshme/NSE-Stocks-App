@@ -23,7 +23,7 @@ Optional modules -
 
    1. get all:-
      Use `get all` to show all your stock values sequentially but may be slower.
-     Use `get all-m` to get faster results, but stocks are shown randomly.
+     Use `get all-m` to get faster results, but stocks are shown randomly. `get all-m` is the default command. See [this](https://github.com/InfernoCoder11/NSE-Stocks-App#extra-instructions-for-power-users-) to change it.
 
    2. get:-
      Use `get STOCKSYMBOLS` to get the values of particular stocks.
@@ -35,7 +35,7 @@ Optional modules -
      Use `remove STOCKSYMBOLS` to remove stocks from your list of stocks.
 
    5. status:-
-     Use `status` to see your list of stocks
+     Use `status` to see your list of stock38039055+InfernoCoder11@users.noreply.github.coms
 
  Wherever *STOCKSYMBOLS* have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces.
  If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/master/Stocks.py).
@@ -54,8 +54,9 @@ Optional modules -
    - Note that some OS's ship with python 2 and python 3 pre-installed. In that case replace pip with pip3.
 
 ### Extra Instructions for Power Users:-
+   - To change default command, say to `get all`, open config.ini, under Settings section, find default option and set it accordingly.
    - To use another parser, say lxml, open config.ini, under Settings section, find the parser option and set it accordingly.
    - To run the program from anywhere, add the line - `alias ShortcutName="path/to/cli.py"` in ~/.bash_aliases and run using `ShortcutName COMMAND`
 
    
-*Developed and tested extensively on Ubuntu 16.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. May 5 2018.*
+*Developed and tested extensively on Ubuntu 18.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. May 20 2018.*
