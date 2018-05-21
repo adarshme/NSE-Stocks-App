@@ -35,7 +35,7 @@ Optional modules -
      Use `remove STOCKSYMBOLS` to remove stocks from your list of stocks.
 
    5. status:-
-     Use `status` to see your list of stock38039055+InfernoCoder11@users.noreply.github.coms
+     Use `status` to see your list of stocks
 
  Wherever *STOCKSYMBOLS* have been used, it means you can use a single stock symbol or multiple stock symbols seperated by spaces.
  If you would prefer another printing format, check out [Stocks.py](https://github.com/InfernoCoder11/NSE-Stocks-App/blob/master/Stocks.py).
