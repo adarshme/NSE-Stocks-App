@@ -74,17 +74,6 @@ def SimpleGet(StocksList = sys.argv):
 			print ("Last Updated Time:", lastUpdateTime)
 			print ()
 
-		'''
-		print (StartEndString)
-		print ()
-		print (Start, "Stock:", companyName, End)
-		print (Start, "Last Price:", lastPrice, End)
-		print (Start, "Percentage Change:", pChange, End)
-		print (Start, "Absolute Change:", change, End)
-		print (Start, "Last Updated Time:", lastUpdateTime, End)
-		print ()
-		print (StartEndString)'''
-
 def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing gets messed up.
 	try:
 		Data = StockApp.ExtractStockPrice(Stock)
@@ -123,17 +112,6 @@ def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing g
 
 		else:
 			Start = ""
-
-	'''
-	print (StartEndString)
-	print ()
-	print (Start, "Stock:", companyName, End)
-	print (Start, "Last Price:", lastPrice, End)
-	print (Start, "Percentage Change:", pChange, End)
-	print (Start, "Absolute Change:", change, End)
-	print (Start, "Last Updated Time:", lastUpdateTime, End)
-	print ()
-	print (StartEndString)'''
 
 	lock.acquire() #Acquire print lock
 
