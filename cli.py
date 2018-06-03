@@ -4,6 +4,7 @@ import Stocks #Main API
 import sys #To get Command Line arguments
 import config #Config file API
 import multiprocessing #It's obviuos :)
+import time
 
 StartEndString = "------------------------------------" #For neat printing.
 
@@ -27,7 +28,7 @@ def SimpleGet(StocksList = sys.argv):
 	#Loop each stock symbol from StocksList
 	for i in range (start, end):
 		try:
-			Data = StockApp.ExtractStockPrice(StocksList[i])
+			StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
 		except Exception:
 			#No internet, stock symbol which doesn't exist, etc.
@@ -76,7 +77,7 @@ def SimpleGet(StocksList = sys.argv):
 
 def MultiStockPrice(Stock, lock): #Lock needed for print lock or else printing gets messed up.
 	try:
-		Data = StockApp.ExtractStockPrice(Stock)
+		StockApp.ExtractStockPrice(Stock)
 		RequestComplete = True
 	except Exception:
 		#No internet, stock symbol which doesn't exist, etc.
@@ -141,6 +142,9 @@ def MultiGet(StocksList = sys.argv):
 
 	Processes = [] #To store each process.
 
+	StartTime = time.time()
+	SlowInternetMessagePrinted = False
+
 	for i in range (start, end):
 		Processes.append (multiprocessing.Process(target = MultiStockPrice, args = (StocksList[i], lock, ))) #Create frocess for each stock symbol
 
@@ -149,7 +153,11 @@ def MultiGet(StocksList = sys.argv):
 
 	for i in Processes:
 		while i.is_alive(): #Standby till every processes is complete.
-			pass
+			if time.time() - StartTime > 10 and not SlowInternetMessagePrinted:
+				print ("Internet seems to be very slow")
+				print ("Please check your internet connection and try again")
+				print ("Press Ctrl + C to exit or wait for program to finish")
+				SlowInternetMessagePrinted = True
 
 def ExecuteDefault():
 	Settings = Config.GetAllSettings()

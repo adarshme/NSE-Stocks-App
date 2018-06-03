@@ -59,4 +59,4 @@ Optional modules -
    - To run the program from anywhere, add the line - `alias ShortcutName="path/to/cli.py"` in ~/.bash_aliases and run using `ShortcutName COMMAND`
 
    
-*Developed and tested extensively on Ubuntu 18.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. May 20 2018.*
+*Developed and tested extensively on Ubuntu 18.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. June 3 2018.*
