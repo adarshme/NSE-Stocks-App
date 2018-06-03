@@ -156,7 +156,7 @@ def MultiGet(StocksList = sys.argv):
 			if time.time() - StartTime > 10 and not SlowInternetMessagePrinted:
 				print ("Internet seems to be very slow")
 				print ("Please check your internet connection and try again")
-				print ("Press Ctrl + C to exit")
+				print ("Press Ctrl + C to exit or wait for program to finish")
 				SlowInternetMessagePrinted = True
 
 def ExecuteDefault():
