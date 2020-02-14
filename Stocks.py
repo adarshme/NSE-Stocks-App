@@ -3,7 +3,7 @@
 import sys
 import collections
 from bs4 import BeautifulSoup
-from urllib.request import Request, urlopen
+#from urllib.request import Request, urlopen
 import json
 import config
 import requests
