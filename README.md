@@ -5,7 +5,7 @@ Cross Platform App to quickly get real-time information about your stocks throug
 
 You need Python 3 installed [(how to install Python)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-). Instructions to add your stocks and run the program are given [below](https://github.com/InfernoCoder11/NSE-Stocks-App#instructions-).
 
-Note:- **This is still in development. Stay tuned for more features!** Any suggestions are always welcome.
+Note:- **The NSE have changed their website. As a result this program does not work as intended. I'm trying to fix it.** Any suggestions are always welcome.
 
 ***Required modules*** (Not in stdlib)-
   ***Beautiful Soup 4*** [(How to install Beautiful Soup 4)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
@@ -57,6 +57,3 @@ Optional modules -
    - To change default command, say to `get all`, open config.ini, under Settings section, find default option and set it accordingly.
    - To use another parser, say lxml, open config.ini, under Settings section, find the parser option and set it accordingly.
    - To run the program from anywhere, add the line - `alias ShortcutName="path/to/cli.py"` in ~/.bash_aliases and run using `ShortcutName COMMAND`
-
-   
-*Developed and tested extensively on Ubuntu 18.04 LTS. Some aesthetic features are disabled for windows due to non-compatibility. Will update as soon as a solution is found. June 3 2018.*
