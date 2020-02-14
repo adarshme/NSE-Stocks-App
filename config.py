@@ -50,7 +50,7 @@ class Config():
 			print ("Added", StockApp.companyName)
 
 		elif Data == None:
-			print ("Couln't find", StockSymbol.lower()) # Error Message
+			print ("Couldn't find", StockSymbol.lower()) # Error Message
 
 	def RemoveStockSymbol(self, StockSymbol):
 		if self.config.has_option("Stocks", StockSymbol): # Check if stock symbol has been added before

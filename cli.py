@@ -30,10 +30,10 @@ def SimpleGet(StocksList = sys.argv):
 		try:
 			StockApp.ExtractStockPrice(StocksList[i])
 			RequestComplete = True
-		except Exception:
+		except Exception as e:
 			#No internet, stock symbol which doesn't exist, etc.
 			print ("Can't get", StocksList[i])
-			print ()
+			print (e)
 			RequestComplete = False
 
 		try:
