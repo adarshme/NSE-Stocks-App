@@ -8,9 +8,11 @@ You need Python 3 installed [(how to install Python)](https://github.com/Inferno
 
 Note:- **This is still in development. Stay tuned for more features!** Any suggestions are always welcome.
 
-**_Required modules_** (Not in stdlib)-
-**_Beautiful Soup 4_** [(How to install Beautiful Soup 4)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
-**_Requests_** [(How to install Requests)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
+**_Required modules_** (Not in stdlib): -
+
+- **_Beautiful Soup 4_** [(How to install Beautiful Soup 4)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
+
+- **_Requests_** [(How to install Requests)](https://github.com/InfernoCoder11/NSE-Stocks-App#how-to-install-python-andor-required-modules-)
 
 Optional modules -
 _PyQT5_ (For GUI)
@@ -54,7 +56,7 @@ if you are in a system which has python2 by default, type:-
 
 1.  Download the latest version of python (3.x.x) from [here](https://www.python.org/downloads/) and install it.
 2.  In terminal/cmd/powershell type `pip install beautifulsoup4` to install BeautifulSoup4.
-3.  To install requests, type `pip install requests`
+3.  To install requests, type `pip install requests`.
 4.  To install PyQt5, type `pip install pyqt5`.
 
 - If you already have python 3 installed, skip the first step.
