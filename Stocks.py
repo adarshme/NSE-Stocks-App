@@ -3,9 +3,10 @@
 import sys
 import collections
 from bs4 import BeautifulSoup
-from urllib.request import Request, urlopen
+#from urllib.request import Request, urlopen
 import json
 import config
+import requests
 
 Config = config.Config()
 
@@ -52,7 +53,7 @@ class Stocks():
 			print ()
 
 	def UrlBuilder(self, StockSymbol):
-		self.BaseUrl = "https://www.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol="
+		self.BaseUrl = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol="
 
 		self.FinalUrl = self.BaseUrl + StockSymbol
 
@@ -64,12 +65,14 @@ class Stocks():
 		if Url != None:
 			hdr = {'User-Agent': 'Mozilla/5.0'}
 
-			req = Request(Url ,headers=hdr)
+			#req = Request(Url ,headers=hdr)
 
-			page = urlopen(req)
+			req = requests.get(Url, headers = hdr)
+
+			#page = urlopen(req)
 
 			try:
-				soup = BeautifulSoup(page, Config.GetAllSettings()["parser"])
+				soup = BeautifulSoup(req.content, Config.GetAllSettings()["parser"])
 			
 			except Exception as e:
 				soup = BeautifulSoup(page, "html.parser")
